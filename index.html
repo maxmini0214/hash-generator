@@ -62,14 +62,27 @@ footer{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.8rem}
   }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is a hash generator?", "acceptedAnswer": {"@type": "Answer", "text": "A hash generator takes any text or file and produces a fixed-length string of characters (a hash) using algorithms like MD5, SHA-1, SHA-256, or SHA-512. Hashes are one-way — you cannot reverse them to get the original input."}},
+    {"@type": "Question", "name": "Is this hash generator safe to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All hashing is done entirely in your browser using the Web Crypto API. No data is ever sent to a server. You can verify by checking the network tab in your browser's developer tools."}},
+    {"@type": "Question", "name": "What is the difference between MD5, SHA-1, and SHA-256?", "acceptedAnswer": {"@type": "Answer", "text": "MD5 produces a 128-bit hash (32 hex chars), SHA-1 produces 160-bit (40 hex), SHA-256 produces 256-bit (64 hex), and SHA-512 produces 512-bit (128 hex). SHA-256 and SHA-512 are recommended for security — MD5 and SHA-1 have known collision vulnerabilities."}},
+    {"@type": "Question", "name": "Can I hash files with this tool?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Click the 'Hash File' button to select any file. The file is read entirely in your browser — nothing is uploaded. This is useful for verifying file integrity after downloads."}},
+    {"@type": "Question", "name": "Why is MD5 considered insecure?", "acceptedAnswer": {"@type": "Answer", "text": "MD5 has known collision attacks — two different inputs can produce the same hash. It's fine for checksums and non-security uses, but don't use it for passwords or digital signatures. Use SHA-256 or SHA-512 instead."}},
+    {"@type": "Question", "name": "Does this work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All hashing is done client-side using the Web Crypto API. Save the page and use it offline — no internet connection or server needed."}}
+  ]
+}
+</script>
 </head>
 <body>
 <header>
-<h1>파일 무결성 체크, 비밀번호 해싱 — 즉시 생성</h1>
-<p class="subtitle">MD5 · SHA-1 · SHA-256 · SHA-512 — Web Crypto API로 브라우저에서 즉시</p>
+<h1>🔒 Hash Generator</h1>
+<p class="subtitle">MD5 · SHA-1 · SHA-256 · SHA-512 — Client-side with Web Crypto API</p>
 </header>
 <main>
-<div class="ad-slot">📢 Ad Space</div>
 <div class="card">
 <label>Input Text</label>
 <textarea id="input" placeholder="Type or paste text to hash..."></textarea>
@@ -87,23 +100,47 @@ footer{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.8rem}
 <div class="hash-row"><span class="hash-label">SHA-512</span><div class="hash-value" id="sha512" onclick="copyHash(this)">—</div></div>
 <p style="font-size:.75rem;color:var(--muted);margin-top:.5rem">Click any hash to copy</p>
 </div>
-<div class="cta">
-<h3>🚀 DevTools Pro Bundle — $9</h3>
-<p>All tools offline + API access + priority updates</p>
-<a href="https://payhip.com/MaxDevTools" target="_blank">Get Pro →</a>
+<div class="card" style="margin-top:16px">
+<h3 style="font-size:1.1rem;margin-bottom:12px">📖 How to Use</h3>
+<ol style="padding-left:20px;font-size:.9rem;color:var(--muted);line-height:1.7">
+<li><strong>Enter text</strong> — type or paste any text into the input box</li>
+<li><strong>Or hash a file</strong> — click 📁 Hash File to verify downloaded files</li>
+<li><strong>View all hashes</strong> — MD5, SHA-1, SHA-256, and SHA-512 generate simultaneously</li>
+<li><strong>Copy & share</strong> — click any hash to copy, or 🔗 Share to save your input as a URL</li>
+</ol>
 </div>
-<div class="ad-slot">📢 Ad Space</div>
+
+<div style="text-align:center;margin:12px 0">
+<button class="btn btn-secondary" onclick="shareHash()" style="padding:10px 20px">🔗 Share</button>
+</div>
+
+<div style="text-align:center;margin:20px 0;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:12px">
+<p style="font-size:.95rem;margin-bottom:8px">🏦 <strong>Like zero-server tools?</strong></p>
+<p style="font-size:.85rem;color:var(--muted);margin-bottom:12px">Try <strong>DonFlow</strong> — budget drift detector, 100% in your browser.</p>
+<a href="https://maxmini0214.github.io/donflow/?demo" target="_blank" style="color:var(--accent);font-size:.9rem">Try the live demo →</a>
+</div>
+
 <h3 style="margin-top:2rem;margin-bottom:.5rem">🛠 More Developer Tools</h3>
 <div class="tools-grid">
-<a class="tool-link" href="https://maxmini0214.github.io/json-formatter/">JSON Formatter</a>
-<a class="tool-link" href="https://maxmini0214.github.io/regex-tester/">Regex Tester</a>
-<a class="tool-link" href="https://maxmini0214.github.io/base64-tool/">Base64 Encoder</a>
-<a class="tool-link" href="https://maxmini0214.github.io/url-encoder/">URL Encoder</a>
-<a class="tool-link" href="https://maxmini0214.github.io/color-picker/">Color Picker</a>
-<a class="tool-link" href="https://maxmini0214.github.io/lorem-ipsum/">Lorem Ipsum</a>
+<a class="tool-link" href="https://maxmini0214.github.io/password-generator/">🔐 Password Generator</a>
+<a class="tool-link" href="https://maxmini0214.github.io/keyword-mixer/">🔀 Keyword Mixer</a>
+<a class="tool-link" href="https://maxmini0214.github.io/json-formatter/">📋 JSON Formatter</a>
+<a class="tool-link" href="https://maxmini0214.github.io/regex-tester/">🔤 Regex Tester</a>
+<a class="tool-link" href="https://maxmini0214.github.io/cron-parser/">⏰ Cron Parser</a>
+<a class="tool-link" href="https://maxmini0214.github.io/base64-tool/">🔣 Base64 Encoder</a>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h3 style="font-size:1.1rem;margin-bottom:12px">❓ FAQ</h3>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">What is a hash generator?</summary><p style="font-size:.85rem;color:var(--muted);padding:8px 0 4px">A hash generator takes any text or file and produces a fixed-length string using algorithms like MD5, SHA-1, SHA-256, or SHA-512. Hashes are one-way — you cannot reverse them to get the original input.</p></details>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">Is this hash generator safe to use?</summary><p style="font-size:.85rem;color:var(--muted);padding:8px 0 4px">Yes. All hashing is done in your browser using the Web Crypto API. No data is ever sent to a server. Verify in your browser's network tab.</p></details>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">What's the difference between MD5, SHA-1, and SHA-256?</summary><p style="font-size:.85rem;color:var(--muted);padding:8px 0 4px">MD5 produces 128-bit (32 hex chars), SHA-1 160-bit (40 hex), SHA-256 256-bit (64 hex), SHA-512 512-bit (128 hex). SHA-256/512 are recommended — MD5 and SHA-1 have known collision vulnerabilities.</p></details>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">Can I hash files with this tool?</summary><p style="font-size:.85rem;color:var(--muted);padding:8px 0 4px">Yes. Click 📁 Hash File to select any file. It's read entirely in your browser — nothing is uploaded. Great for verifying file integrity.</p></details>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">Why is MD5 considered insecure?</summary><p style="font-size:.85rem;color:var(--muted);padding:8px 0 4px">MD5 has known collision attacks. Fine for checksums, but don't use it for passwords or signatures. Use SHA-256 or SHA-512 instead.</p></details>
+<details><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">Does this work offline?</summary><p style="font-size:.85rem;color:var(--muted);padding:8px 0 4px">Yes. All hashing is client-side via Web Crypto API. Save the page and use offline — no server needed.</p></details>
 </div>
 </main>
-<footer><p>🔒 Privacy First — Nothing leaves your browser.</p><p style="margin-top:.5rem">© 2026 DevTools by maxseats</p></footer>
+<footer><p>🔒 Privacy First — Nothing leaves your browser.</p><p style="margin-top:.5rem">Built with ❤️ by <a href="https://github.com/maxmini0214" style="color:var(--accent);text-decoration:none">MaxDevTools</a></p></footer>
 <script>
 // MD5 implementation (public domain)
 var md5=function(){function h(a,b){var c,d,e,f,g;e=a&2147483648;f=b&2147483648;c=a&1073741824;d=b&1073741824;g=(a&1073741823)+(b&1073741823);return c&d?g^2147483648^e^f:c|d?g&1073741824?g^3221225472^e^f:g^1073741824^e^f:g^e^f}function k(a,b,c,d,e,f,g){a=h(a,h(h(b&c|~b&d,e),g));return h(a<<f|a>>>32-f,b)}function l(a,b,c,d,e,f,g){a=h(a,h(h(b&d|c&~d,e),g));return h(a<<f|a>>>32-f,b)}function m(a,b,c,d,e,f,g){a=h(a,h(h(b^c^d,e),g));return h(a<<f|a>>>32-f,b)}function n(a,b,c,d,e,f,g){a=h(a,h(h(c^(b|~d),e),g));return h(a<<f|a>>>32-f,b)}function p(a){var b="",c,d;for(d=0;3>=d;d++)c=a>>>8*d&255,b+="0123456789abcdef".charAt(c>>>4&15)+"0123456789abcdef".charAt(c&15);return b}var q=Array();return function(a){var b=q,c,d,e,f,g,i,j;a=function(a){a=a.replace(/\r\n/g,"\n");for(var b="",c=0;c<a.length;c++){var d=a.charCodeAt(c);128>d?b+=String.fromCharCode(d):(127<d&&2048>d?b+=String.fromCharCode(d>>6|192):(b+=String.fromCharCode(d>>12|224),b+=String.fromCharCode(d>>6&63|128)),b+=String.fromCharCode(d&63|128))}return b}(a);b=function(a){for(var b,c=a.length,d=c+8,e=16*((d-d%64)/64+1),f=Array(e-1),g=0,h=0;h<c;)b=(h-h%4)/4,g=h%4*8,f[b]=f[b]|a.charCodeAt(h)<<g,h++;f[(h-h%4)/4]=f[(h-h%4)/4]|128<<h%4*8;f[e-2]=c<<3;f[e-1]=c>>>29;return f}(a);c=1732584193;d=4023233417;e=2562383102;f=271733878;for(a=0;a<b.length;a+=16)i=c,j=d,g=e,c=k(c,d,e,f,b[a],7,3614090360),f=k(f,c,d,e,b[a+1],12,3905402710),e=k(e,f,c,d,b[a+2],17,606105819),d=k(d,e,f,c,b[a+3],22,3250441966),c=k(c,d,e,f,b[a+4],7,4118548399),f=k(f,c,d,e,b[a+5],12,1200080426),e=k(e,f,c,d,b[a+6],17,2821735955),d=k(d,e,f,c,b[a+7],22,4249261313),c=k(c,d,e,f,b[a+8],7,1770035416),f=k(f,c,d,e,b[a+9],12,2336552879),e=k(e,f,c,d,b[a+10],17,4294925233),d=k(d,e,f,c,b[a+11],22,2304563134),c=k(c,d,e,f,b[a+12],7,1804603682),f=k(f,c,d,e,b[a+13],12,4254626195),e=k(e,f,c,d,b[a+14],17,2792965006),d=k(d,e,f,c,b[a+15],22,1236535329),c=l(c,d,e,f,b[a+1],5,4129170786),f=l(f,c,d,e,b[a+6],9,3225465664),e=l(e,f,c,d,b[a+11],14,643717713),d=l(d,e,f,c,b[a],20,3921069994),c=l(c,d,e,f,b[a+5],5,3593408605),f=l(f,c,d,e,b[a+10],9,38016083),e=l(e,f,c,d,b[a+15],14,3634488961),d=l(d,e,f,c,b[a+4],20,3889429448),c=l(c,d,e,f,b[a+9],5,568446438),f=l(f,c,d,e,b[a+14],9,3275163606),e=l(e,f,c,d,b[a+3],14,4107603335),d=l(d,e,f,c,b[a+8],20,1163531501),c=l(c,d,e,f,b[a+13],5,2850285829),f=l(f,c,d,e,b[a+2],9,4243563512),e=l(e,f,c,d,b[a+7],14,1735328473),d=l(d,e,f,c,b[a+12],20,2368359562),c=m(c,d,e,f,b[a+5],4,4294588738),f=m(f,c,d,e,b[a+8],11,2272392833),e=m(e,f,c,d,b[a+11],16,1839030562),d=m(d,e,f,c,b[a+14],23,4259657740),c=m(c,d,e,f,b[a+1],4,2763975236),f=m(f,c,d,e,b[a+4],11,1272893353),e=m(e,f,c,d,b[a+7],16,4139469664),d=m(d,e,f,c,b[a+10],23,3200236656),c=m(c,d,e,f,b[a+13],4,681279174),f=m(f,c,d,e,b[a],11,3936430074),e=m(e,f,c,d,b[a+3],16,3572445317),d=m(d,e,f,c,b[a+6],23,76029189),c=m(c,d,e,f,b[a+9],4,3654602809),f=m(f,c,d,e,b[a+12],11,3873151461),e=m(e,f,c,d,b[a+15],16,530742520),d=m(d,e,f,c,b[a+2],23,3299628645),c=n(c,d,e,f,b[a],6,4096336452),f=n(f,c,d,e,b[a+7],10,1126891415),e=n(e,f,c,d,b[a+14],15,2878612391),d=n(d,e,f,c,b[a+5],21,4237533241),c=n(c,d,e,f,b[a+12],6,1700485571),f=n(f,c,d,e,b[a+3],10,2399980690),e=n(e,f,c,d,b[a+10],15,4293915773),d=n(d,e,f,c,b[a+1],21,2240044497),c=n(c,d,e,f,b[a+8],6,1873313359),f=n(f,c,d,e,b[a+15],10,4264355552),e=n(e,f,c,d,b[a+6],15,2734768916),d=n(d,e,f,c,b[a+13],21,1309151649),c=n(c,d,e,f,b[a+4],6,4149444226),f=n(f,c,d,e,b[a+11],10,3174756917),e=n(e,f,c,d,b[a+2],15,718787259),d=n(d,e,f,c,b[a+9],21,3951481745),c=h(c,i),d=h(d,j),e=h(e,g),f=h(f,f);return(p(c)+p(d)+p(e)+p(f)).toLowerCase()}}();
@@ -134,16 +171,28 @@ document.getElementById('input').value='[File: '+file.name+' ('+file.size+' byte
 function copyHash(el){navigator.clipboard.writeText(el.textContent);el.classList.add('copied');setTimeout(()=>el.classList.remove('copied'),1000)}
 function clearAll(){document.getElementById('input').value='';['md5','sha1','sha256','sha512'].forEach(id=>document.getElementById(id).textContent='—')}
 document.getElementById('input').addEventListener('input',hashAll);
+
+function shareHash(){
+  const t=document.getElementById('input').value;
+  if(!t||t.startsWith('[File:')){return}
+  const url=location.origin+location.pathname+'?text='+encodeURIComponent(btoa(unescape(encodeURIComponent(t))));
+  navigator.clipboard.writeText(url).then(()=>{
+    const el=document.querySelector('.btn-secondary[onclick="shareHash()"]');
+    if(el){el.textContent='✅ Link copied!';setTimeout(()=>el.textContent='🔗 Share',2000)}
+  });
+}
+(function restoreFromURL(){
+  const p=new URLSearchParams(location.search);
+  if(p.has('text')){
+    try{
+      const t=decodeURIComponent(escape(atob(p.get('text'))));
+      document.getElementById('input').value=t;
+      hashAll();
+    }catch(e){}
+  }
+})();
 </script>
 <script data-goatcounter="https://maxdevtools.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- Newsletter CTA -->
-<div style="max-width:480px;margin:2rem auto;padding:1.5rem;background:#f8f9fa;border-radius:12px;text-align:center;font-family:system-ui,sans-serif">
-<p style="margin:0 0 0.5rem;font-size:1.1rem;font-weight:600">📬 Get Dev Tools & Tips Weekly</p>
-<p style="margin:0 0 1rem;color:#666;font-size:0.9rem">Free tools, automation tricks, and AI insights. No spam.</p>
-<form action="https://buttondown.com/api/emails/embed-subscribe/maxmini0214" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/maxmini0214','popupwindow')" style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap">
-<input type="email" name="email" placeholder="your@email.com" required style="padding:0.5rem 1rem;border:1px solid #ddd;border-radius:8px;font-size:0.9rem;width:200px">
-<input type="submit" value="Subscribe" style="padding:0.5rem 1rem;background:#0069ff;color:white;border:none;border-radius:8px;cursor:pointer;font-size:0.9rem;font-weight:600">
-</form>
-</div>
+<!-- cleaned -->
 </body>
 </html>
